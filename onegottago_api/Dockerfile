@@ -1,5 +1,7 @@
 FROM python:3.10-alpine
 
+ENV gcp-project=${GCP_PROJECT}
+
 WORKDIR /code
 
 COPY ./requirements.txt /code/requirements.txt
