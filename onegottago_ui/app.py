@@ -1,8 +1,9 @@
 from flask import Flask, render_template
 import random
 import requests
+from dotenv import load_dotenv
 
-
+load_dotenv('.env')
 app = Flask(__name__)
 app.config.from_pyfile("settings.py")
 
