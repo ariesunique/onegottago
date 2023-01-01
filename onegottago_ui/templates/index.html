@@ -24,43 +24,28 @@
                 <div class="col">
                 </div>
                 <div class="col">
-                  <form>
+                  <form action="{{ url_for('index') }}" method="post">
+                    <input type="text" name="card_id" id="card_id" value="{{card_id}}" hidden>
                   <div class="card mb-4 rounded-3 shadow-sm">
                     <div class="card-header py-3">
                       <h4 class="my-0 fw-normal">{{category}}</h4>
                     </div>
                     <div class="card-title">
                         <ul class="list-group list-group-flush">
+                            {% for value in options %}
                             <li class="list-group-item">
                                 <div class="form-check">
-                                    <input id="A" name="option" type="radio" class="form-check-input" required>
-                                    <label for="A" class="form-check-label">{{options[0]}}</label>
+                                    <input id="{{loop.index0}}" value="{{loop.index0}}" name="option" type="radio" class="form-check-input" required>
+                                    <label for="{{loop.index0}}" class="form-check-label">{{value}}</label>
                                 </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="form-check">
-                                    <input id="B" name="option" type="radio" class="form-check-input" required>
-                                    <label for="B" class="form-check-label">{{options[1]}}</label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="form-check">
-                                    <input id="C" name="option" type="radio" class="form-check-input" required>
-                                    <label for="C" class="form-check-label">{{options[2]}}</label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="form-check">
-                                    <input id="D" name="option" type="radio" class="form-check-input" required>
-                                    <label for="D" class="form-check-label">{{options[3]}}</label>
-                                </div>
-                            </li>
+                            </li>                            
+                            {% endfor %}
                           </ul>
 
                     </div>
                     <div class="card-footer">
                         <div class="d-grid gap-2 d-md-block">
-                            <button class="btn btn-primary" type="button">Gotta Go!</button>
+                            <button class="btn btn-primary" type="button" onclick="submit();">Gotta Go!</button>
                             <button class="btn btn-secondary" type="button">No Preference</button>
                           </div>
                     </div>
