@@ -24,8 +24,6 @@
                 <div class="col">
                 </div>
                 <div class="col">
-                  <form action="{{ url_for('index') }}" method="post">
-                    <input type="text" name="card_id" id="card_id" value="{{card_id}}" hidden>
                   <div class="card mb-4 rounded-3 shadow-sm">
                     <div class="card-header py-3">
                       <h4 class="my-0 fw-normal">{{category}}</h4>
@@ -35,8 +33,7 @@
                             {% for value in options %}
                             <li class="list-group-item">
                                 <div class="form-check">
-                                    <input id="{{loop.index0}}" value="{{loop.index0}}" name="option" type="radio" class="form-check-input" required>
-                                    <label for="{{loop.index0}}" class="form-check-label">{{value}}</label>
+                                    {{value}} {% if loop.index0|string in stats %} <span class="badge text-bg-info">{{  "%.2f"|format(stats[loop.index0|string]/stats["total"] * 100)   }}%</span> {% endif %}
                                 </div>
                             </li>                            
                             {% endfor %}
@@ -45,12 +42,10 @@
                     </div>
                     <div class="card-footer">
                         <div class="d-grid gap-2 d-md-block">
-                            <button class="btn btn-primary" type="button" onclick="submit();">Gotta Go!</button>
-                            <button class="btn btn-secondary" type="button">No Preference</button>
+                            <a  href="{{ url_for('index') }}" class="btn btn-primary" type="button">Next Card</a>
                           </div>
                     </div>
                   </div>
-                  </form>
                 </div>
                 <div class="col">
                 </div>
