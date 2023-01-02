@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>One Gotta Go!</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  
+    <script>
+      function isValid() {
+        var option = document.getElementsByName("option");
+
+        for (var i = 0; i < option.length; i++) {
+          if (option[i].checked) return true;
+        }
+
+        msg = "Please make a selection (or click the Skip button)!";
+        const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+        const wrapper = document.createElement('div')
+        wrapper.innerHTML = [
+          `<div class="alert alert-warning alert-dismissible" role="alert">`,
+          `   <div>${msg}</div>`,
+          '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+          '</div>'
+        ].join('')
+
+        alertPlaceholder.append(wrapper)
+        return false;
+      }
+    </script>
   </head>
   <body>
     <div class="container py-3">
@@ -24,8 +47,9 @@
                 <div class="col">
                 </div>
                 <div class="col">
-                  <form action="{{ url_for('index') }}" method="post">
+                  <form id="cardform" action="{{ url_for('index') }}" method="post">
                     <input type="text" name="card_id" id="card_id" value="{{card_id}}" hidden>
+                    <input type="text" name="skip" id="skip" value="" hidden>
                   <div class="card mb-4 rounded-3 shadow-sm">
                     <div class="card-header py-3">
                       <h4 class="my-0 fw-normal">{{category}}</h4>
@@ -45,8 +69,8 @@
                     </div>
                     <div class="card-footer">
                         <div class="d-grid gap-2 d-md-block">
-                            <button class="btn btn-primary" type="button" onclick="submit();">Gotta Go!</button>
-                            <button class="btn btn-secondary" type="button">No Preference</button>
+                            <button class="btn btn-primary" type="button" onclick="if (isValid()) { submit(); }">Gotta Go!</button>
+                            <button class="btn btn-secondary" type="button" onclick="document.getElementById('skip').value = 'skip'; submit();">Skip</button>
                           </div>
                     </div>
                   </div>
@@ -55,6 +79,7 @@
                 <div class="col">
                 </div>
             </div>
+            <div id="liveAlertPlaceholder"></div>
         </main>        
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

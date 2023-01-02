@@ -7,11 +7,14 @@ from dataclasses import dataclass, field
 from typing import List, Dict
 from dotenv import load_dotenv
 import os
+import logging
 
 app = FastAPI()
 load_dotenv()
 
 project = os.environ.get("gcp_project")
+
+SKIPPED_OPTION_VAL = "99"
 
 @dataclass
 class Card:
@@ -78,12 +81,22 @@ async def update_card(card_id: int, incoming_card: Card):
 
 @app.put("/cards/{card_id}/options/{option_index}")
 async def update_card_selected_option(card_id: int, option_index: str):
-    # another method to update the stats; only requires client to send the selected option
-    datastore_client = getClient()
-    entity = datastore_client.get(Key('Card', card_id, project=project))
-    stats_obj = {} if "stats" not in entity else entity["stats"]
-    stats_obj[option_index] = stats_obj.get(option_index, 0) + 1
-    stats_obj["total"] = stats_obj.get("total", 0) + 1
-    entity["stats"] = stats_obj
-    datastore_client.put(entity)
+    # another method to update the stats; this only requires client to send the selected option
+    # Note: if the user skips this card, that is not included in the total answers for this card (as it would skew the stats)
+    #   Keeping track of the times the card was skipped is useful for determining card popularity
+    if (option_index >= "0" and option_index < "4") or (option_index == SKIPPED_OPTION_VAL):
+        datastore_client = getClient()
+        entity = datastore_client.get(Key('Card', card_id, project=project))
+        stats_obj = {} if "stats" not in entity else entity["stats"]
+        
+        if option_index == SKIPPED_OPTION_VAL:
+            stats_obj["skipped"] = stats_obj.get("skipped", 0) + 1
+        else:
+            stats_obj[option_index] = stats_obj.get(option_index, 0) + 1
+            stats_obj["total"] = stats_obj.get("total", 0) + 1
+        
+        entity["stats"] = stats_obj
+        datastore_client.put(entity)
+    else:
+        logging.warn("Selected option outside of expected range; Expect 0,1,2,3,99; got " + option_index)
 
