@@ -1,0 +1,151 @@
+{
+    "cards": [
+        {    
+            "category": "movies",
+            "options": [
+                "Miracle on 34th Street", 
+                "It's A Wonderful Life", 
+                "A Christmas Carol", 
+                "The Bishop's Wife"
+            ],
+            "tags": ["Christmas", "holidays"]
+        },
+        {    
+            "category": "movies",
+            "options": [
+                "Home Alone", 
+                "The Nightmare Before Christmas", 
+                "A Christmas Story", 
+                "Elf"
+            ],
+            "tags": ["Christmas", "holidays"]
+        },
+        {    
+            "category": "music",
+            "options": [
+                "The Beatles", 
+                "Aerosmith", 
+                "The Rolling Stones", 
+                "The Zombies"
+            ]
+        },
+        {    
+            "category": "music",
+            "options": [
+                "Backstreet Boys", 
+                "N' Sync", 
+                "New Kids on the Block", 
+                "One Direction"
+            ]
+        },
+        {    
+            "category": "food",
+            "options": [
+                "McDonalds", 
+                "Burger King", 
+                "Shake Shack", 
+                "In n Out"
+            ]
+        },
+        {    
+            "category": "food",
+            "options": [
+                "Twizzlers", 
+                "Raisinets", 
+                "Doughnuts", 
+                "Popcorn"
+            ]
+        },
+        {    
+            "category": "food",
+            "options": [
+                "Chick Fillet", 
+                "KFC", 
+                "Popeyes", 
+                "Chirping Chicken"
+            ]
+        },
+        {    
+            "category": "food",
+            "options": [
+                "Subway", 
+                "Quiznos", 
+                "Blimpie", 
+                "Potbelly"
+            ]
+        },
+        {    
+            "category": "music",
+            "options": [
+                "Jackson 5", 
+                "New Edition", 
+                "Debarge", 
+                "The Commodores"
+            ]
+        },
+        {    
+            "category": "music",
+            "options": [
+                "Taylor Swift", 
+                "Katie Perry", 
+                "Britney Spears", 
+                "Christina Aguillera"
+            ]
+        },
+        {    
+            "category": "television",
+            "options": [
+                "American Idol", 
+                "The Voice", 
+                "The Masked Singer", 
+                "Star Search"
+            ],
+            "tags": ["music"]
+        },
+        {    
+            "category": "television",
+            "options": [
+                "Martin", 
+                "The Wayans Brothers", 
+                "The Jamie Foxx Show", 
+                "My Wife and Kids"
+            ]
+        },
+        {    
+            "category": "television",
+            "options": [
+                "Friends", 
+                "Seinfeld", 
+                "Frasier", 
+                "Cheers"
+            ]
+        },
+        {    
+            "category": "television",
+            "options": [
+                "Barney", 
+                "Sesame Street", 
+                "Teletubbies", 
+                "Blue's Clues"
+            ]
+        },
+        {    
+            "category": "food",
+            "options": [
+                "omellettes", 
+                "bagels", 
+                "French toast", 
+                "oatmeal"
+            ]
+        },
+        {    
+            "category": "sports",
+            "options": [
+                "football (American)", 
+                "soccer", 
+                "baseball", 
+                "basketball"
+            ]
+        }                                                                        
+    ]       
+}

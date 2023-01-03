@@ -12,9 +12,8 @@ import logging
 app = FastAPI()
 load_dotenv()
 
-project = os.environ.get("gcp_project")
-
 SKIPPED_OPTION_VAL = "99"
+project = os.environ.get("gcp_project")
 
 @dataclass
 class Card:
@@ -60,6 +59,20 @@ async def list_cards():
         results.append(card)
 
     return results
+
+
+@app.get("/cards/ids", response_model=List[str])
+async def list_card_ids():
+    results = []
+    datastore_client = getClient()
+    query = datastore_client.query(kind="Card")
+    all_cards = query.fetch()
+
+    for entity in all_cards:
+        results.append(entity.key.id_or_name)
+
+    return results
+
 
 
 @app.get("/cards/{card_id}", response_model=Card)

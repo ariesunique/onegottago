@@ -33,13 +33,13 @@
                           {% for value in options %}
                           <li class="list-group-item">
                               <div class="form-check">
-                                  {{value}} {% if loop.index0|string in stats %} <span class="badge text-bg-info">{{  "%.2f"|format(stats[loop.index0|string]/stats["total"] * 100)   }}%</span> {% endif %}
+                                  {{value}} {% if loop.index0|string in stats %} <span class="badge text-bg-info">{{  "%.2f"|format(stats[loop.index0|string]/stats.get("total",1) * 100)   }}%</span> {% endif %}
                               </div>
                           </li>                            
                           {% endfor %}
                           {% if "skipped" in stats %}
                           <li class="list-group-item">
-                            <div class="small text-body-tertiary">Times this card is skipped: <span class="badge text-bg-secondary">{{  "%.2f"|format(stats["skipped"]/(stats["total"]+stats["skipped"]) * 100)   }}%</span></div>
+                            <div class="small text-body-tertiary">Times this card is skipped: <span class="badge text-bg-secondary">{{  "%.2f"|format(stats["skipped"]/(stats.get("total",0)+stats["skipped"]) * 100)   }}%</span></div>
                           </li>
                           {% endif %}
                         </ul>
